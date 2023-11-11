@@ -25,7 +25,7 @@ def puncture_plot(data_file, plot_file = 0):
     Y = np.reshape(y, (n_grid, n_grid))
     FCT = np.reshape(fct, (n_grid, n_grid))
     fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    ax = fig.add_subplot(projection='3d')
     ax.plot_surface(X, Y, FCT, cmap=cm.autumn, linewidth=1,
                     antialiased=False, alpha=0.2)
     ax.contour(X, Y, FCT, zdir='z', offset=0.0, cmap=cm.autumn)
@@ -48,7 +48,7 @@ def puncture_plot(data_file, plot_file = 0):
     if plot_file == 0:
         plt.show()
     else:
-        plt.savefig(plot_file, psi=300)
+        plt.savefig(plot_file, dpi=300)
 
 
 def main():

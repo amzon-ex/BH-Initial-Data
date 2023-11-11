@@ -9,6 +9,14 @@ Using sparse matrices and a sparse solver with appropriate flags.
 
 Better documentation and further improvements pending.
 
+### Environment
+
+```
+numpy 1.26.1
+scipy 1.11.3
+matplotlib 3.8.1
+```
+
 
 
 

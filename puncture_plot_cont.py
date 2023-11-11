@@ -50,7 +50,7 @@ def puncture_plot(data_file, plot_file = 0):
     if plot_file == 0:
         plt.show()
     else:
-        plt.savefig(plot_file, psi=300)
+        plt.savefig(plot_file, dpi=300)
 
 
 def main():
