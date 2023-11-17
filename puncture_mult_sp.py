@@ -328,7 +328,7 @@ class Puncture:
     def write_to_file(self):
         """Function that writes solution to file."""
 
-        filename = "Puncture_" + str(self.n_grid) + "_" + str(self.x_out)
+        filename = "Puncture_mult_" + str(self.n_grid) + "_" + str(self.x_out)
         filename = filename + ".data"
         out = open(filename, "w")
         if out:
@@ -363,9 +363,9 @@ def main():
     # set default values for variables
     #
     # location of black hole:
-    loc_x = (-1.5, 1.5)
+    loc_x = (0.0, 0.0)
     loc_y = (0.0, 0.0)
-    loc_z = (0.0, 0.0)
+    loc_z = (-2.0, 2.0)
     # momentum of black hole:
     p_x = (0.0, 0.0)
     p_y = (1.0, -1.0)

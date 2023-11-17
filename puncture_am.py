@@ -1,7 +1,9 @@
 """Code to construct puncture initial data for single black hole."""
 import sys
 from numpy import zeros, size, sqrt, linspace
+from scipy.sparse import csr_matrix, lil_matrix
 import scipy.linalg as la
+from scipy.sparse.linalg import spsolve
 
 
 class EllipticSolver:
@@ -34,7 +36,7 @@ class EllipticSolver:
         # super-index
         nnn = self.n_grid ** 3
         self.rhs_1d = zeros(nnn)
-        self.A = zeros((nnn, nnn))
+        self.A = lil_matrix((nnn, nnn))
         self.sol = zeros((self.n_grid, self.n_grid, self.n_grid))
         self.rad = zeros((self.n_grid, self.n_grid, self.n_grid))
 
@@ -126,9 +128,10 @@ class EllipticSolver:
     def solve(self):
         """Interface to scipy.linalg matrix solver,
         returns sol (in 3d format)."""
+        spA = self.A.tocsr()
 
         # solve matrix using scipy.linalg interface...
-        sol_1d = la.solve(self.A, self.rhs_1d)
+        sol_1d = spsolve(spA, self.rhs_1d, permc_spec = 'MMD_AT_PLUS_A')
 
         # ... then translate from superindex to 3d
         for i in range(0, self.n_grid):
